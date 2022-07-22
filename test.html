@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+  <title>Верстка</title>
+  <style>
+    body {
+      --dark-green: #8AD191;
+      --green: #B3F95A;
+
+      --blue: #7FAFF7;
+      --dark-blue: #0D89B0;
+      --dirty-blue: #88B5BF;
+      --transparent-blue: #C0DBD9;
+      --button-blue: #A5C7F9;
+
+      --block-padding: 15px;
+
+      --big-size: 53px;
+      --big-height: 62px;
+
+      --medium-size: 20px;
+      --medium-height: 23px;
+
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      background-color: #fff;
+      margin: 0;
+    }
+    .for-popup { display: none; }
+
+
+    .content {
+      background-color: var(--transparent-blue);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--block-padding);
+      box-sizing: border-box;
+    }
+
+
+    .header {
+      background-color: var(--blue);
+      padding: 30.5px 30px;
+    }
+    .header__button {
+      background-color: var(--button-blue);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: 8px 15px;
+      border-radius: 5px;
+    }
+
+
+    .green {
+      background-color: var(--green);
+      display: grid;
+      grid-gap: var(--block-padding);
+      margin-top: var(--block-padding);
+      grid-template-areas: 'a b c'
+                           'd d e';
+      grid-template-columns: calc(390 / 1170 * 100%) calc(590 / 1170 * 100%) calc(160 / 1170 * 100%);
+      grid-template-rows: repeat(2, 198px);
+    }
+    .green__block {
+      background-color: var(--dark-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .green__block:nth-of-type(1) { grid-area: a; }
+    .green__block:nth-of-type(2) { grid-area: b; }
+    .green__block:nth-of-type(3) { grid-area: c; }
+    .green__block:nth-of-type(4) { grid-area: d; }
+    .green__block:nth-of-type(5) { grid-area: e; }
+    .green__block::after {
+      font-size: var(--big-size);
+      line-height: var(--big-height);
+      color: #fff;
+    }
+    .green__block:nth-of-type(1):after { content: '1' }
+    .green__block:nth-of-type(2):after { content: '2' }
+    .green__block:nth-of-type(3):after { content: '3' }
+    .green__block:nth-of-type(4):after { content: '4' }
+    .green__block:nth-of-type(5):after { content: '5' }
+
+
+    .blue {
+      background-color: var(--dirty-blue);
+      display: flex;
+      padding: 30px;
+      margin-top: var(--block-padding);
+      grid-gap: 30px;
+    }
+    .blue__block {
+      background-color: var(--dark-blue);
+      aspect-ratio: 255/199;
+      width: 100%;
+    }
+
+
+    .footer {
+      background-color: var(--blue);
+      min-height: 100px;
+      margin-top: 100px;
+    }
+
+
+    .popup {
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, .5);
+      position: fixed;
+      display: flex;
+      top: 0;
+      left: 0;
+      align-items: center;
+      justify-content: center;
+      padding: var(--block-padding);
+      box-sizing: border-box;
+      
+      opacity: 0;
+      pointer-events: none;
+      transition: all .5s;
+    }
+    .popup__container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 400px;
+      max-height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      padding: var(--block-padding);
+      box-sizing: border-box;
+    }
+    .popup__button {
+      position: absolute;
+      top: var(--block-padding);
+      right: var(--block-padding);
+      color: #fff;
+      background-color: var(--blue);
+      border-radius: 5px;
+      font-size: var(--medium-size);
+      line-height: var(--medium-height);
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+    .popup__title {
+      color: #000;
+      font-size: var(--big-size);
+      line-height: var(--big-height);
+      margin: 0;
+    }
+
+
+    .for-popup:checked ~ .popup {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+
+    @media (max-width: 1200px) {
+      .green { 
+        grid-template-columns: auto; 
+        grid-template-areas: 'a b'
+                             'c e'
+                             'd d';
+        grid-template-rows: repeat(3, 198px); 
+      }
+    }
+
+    @media (max-width: 768px) {
+      .blue { flex-wrap: wrap; }
+      .blue__block { width: calc((100% - 30px) / 2) }
+    }
+
+    @media (max-width: 580px) {
+      .blue__block { width: 100% }
+    }
+  </style>
+</head>
+<body>
+
+  <input type="checkbox" id="forPopup" class="for-popup">
+
+  <div class="content">
+
+    <header class="header">
+      <label for="forPopup" class="header__button">Open pop-up button</label>
+    </header>
+  
+    <main class="main">
+
+      <section class="green">
+        <div class="green__block"></div>
+        <div class="green__block"></div>
+        <div class="green__block"></div>
+        <div class="green__block"></div>
+        <div class="green__block"></div>
+      </section>
+
+      <section class="blue">
+        <div class="blue__block"></div>
+        <div class="blue__block"></div>
+        <div class="blue__block"></div>
+        <div class="blue__block"></div>
+      </section>
+
+    </main>
+  
+    <footer class="footer"></footer>
+
+  </div>
+
+  <section class="popup">
+    <div class="popup__container">
+      <label for="forPopup" class="popup__button">X</label>
+      <h2 class="popup__title">Pop-up</h2>
+    </div>
+  </section>
+  
+</body>
+</html>
+
+<!-- blue - Сверстать блок, используя не более 6 блоков. 
+Пронумеровать блоки 1-5 с помощью только CSS. -->
+
+<!-- green - При уменьшении ширины этого контейнера внутренние блоки        
+должны уменьшаться, сохраняя соотношение сторон. -->
+
+<!-- Pop-up должен быть свёрстан на CSS без использования JS 
+(открытие/закрытие, позиционирование). -->
